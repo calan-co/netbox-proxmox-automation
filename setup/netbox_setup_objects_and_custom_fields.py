@@ -167,7 +167,7 @@ def create_custom_field(netbox_url=None, netbox_api_token=None, name=None, label
                                  'filter_logic': 'disabled',
                                  'search_weight': 1000,
                                 'object_types': object_types,
-                                'type': input_type,
+                                'type': input_type['value'],
                                 'group_name': group_name,
                                 'name': name,
                                 'label': label,
