@@ -1,0 +1,20 @@
+name: Organization CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  hygiene:
+    uses: calan-co/cicd-shared-pipeline/.github/workflows/reusable-repository-hygiene.yml@v1
+  python:
+    uses: calan-co/cicd-shared-pipeline/.github/workflows/reusable-python-ci.yml@v1
+    with:
+      python-version: "3.12"
+      install-command: python -m pip install --upgrade pip && pip install -r requirements.txt && pip install -r netbox-event-driven-automation-flask-app/requirements.txt && pip install -r setup/requirements.txt
+      check-command: python -m compileall setup netbox-event-driven-automation-flask-app
